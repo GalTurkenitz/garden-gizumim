@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── DESIGN TOKENS ─────────────────────────────────── */
+:root {
+  /* Forest green scale — OKLCH, warm hue ~145 */
+  --g950: oklch(0.17 0.052 145);
+  --g900: oklch(0.23 0.072 145);
+  --g800: oklch(0.31 0.092 145);
+  --g700: oklch(0.41 0.108 147);
+  --g600: oklch(0.51 0.122 148);
+  --g500: oklch(0.59 0.132 148);
+  --g400: oklch(0.69 0.122 150);
+  --g300: oklch(0.77 0.102 150);
+  --g200: oklch(0.86 0.068 150);
+  --g100: oklch(0.93 0.038 150);
+  --g50:  oklch(0.97 0.018 150);
+
+  /* Warm off-white surfaces — tinted toward amber/cream */
+  --s0: oklch(0.985 0.007 85);
+  --s1: oklch(0.96  0.012 85);
+  --s2: oklch(0.91  0.017 85);
+  --s3: oklch(0.85  0.022 85);
+
+  /* Text */
+  --ink:  oklch(0.16 0.038 145);
+  --ink2: oklch(0.33 0.05  145);
+  --ink3: oklch(0.52 0.058 145);
+  --ink4: oklch(0.68 0.048 145);
+  --ink5: oklch(0.80 0.028 145);
+
+  --ease: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* ─── BASE ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: auto; direction: rtl; }
+
+body {
+  background: var(--s0);
+  color: var(--ink);
+  font-family: 'Heebo', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── SCROLLBAR ──────────────────────────────────────── */
+::-webkit-scrollbar { width: 2px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--g600); border-radius: 2px; }
+
+/* ─── LINE MASK ──────────────────────────────────────── */
+.line-mask { overflow: hidden; }
+
+/* ─── TRUST MARQUEE ──────────────────────────────────── */
+.trust-track {
+  display: flex; gap: 0;
+  width: max-content;
+  animation: trustScroll 28s linear infinite;
+}
+@keyframes trustScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ─── REVIEWS TRACK ──────────────────────────────────── */
+.reviews-track {
+  display: flex; gap: 14px;
+  width: max-content;
+  animation: reviewsScroll 60s linear infinite;
+}
+@media (hover: hover) {
+  .reviews-track:hover { animation-play-state: paused; }
+}
+@keyframes reviewsScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ─── WA PULSE ───────────────────────────────────────── */
+@keyframes waPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(37,211,102,0.45); }
+  70%  { box-shadow: 0 0 0 14px rgba(37,211,102,0); }
+  100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+}
+.wa-pulse { animation: waPulse 2.8s ease-out infinite; }
+
+/* ─── SERVICE ROW HOVER ──────────────────────────────── */
+.service-row {
+  border-bottom: 1px solid oklch(0.87 0.068 150 / 0.1);
+  cursor: default;
+  transition: background 200ms;
+}
+.service-row:hover { background: oklch(0.87 0.068 150 / 0.04); }
+
+/* ─── PHOTO REVEAL ───────────────────────────────────── */
+.photo-reveal {
+  overflow: hidden;
+}
+.photo-reveal img {
+  transition: transform 0.6s var(--ease);
+}
+.photo-reveal:hover img {
+  transform: scale(1.04);
+}
