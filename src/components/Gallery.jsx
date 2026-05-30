@@ -4,31 +4,30 @@ import { motion, useInView } from 'framer-motion'
 const EASE = [0.23, 1, 0.32, 1]
 
 const photos = [
-  { src: '/images/hero.jpeg',           alt: 'גיזום עצים מקצועי',        wide: true  },
-  { src: '/images/worker-climbing.png', alt: 'טיפוס מקצועי לצמרת העץ',   wide: false },
-  { src: '/images/crane-sky.jpg',       alt: 'כריתת עצים בגובה',          wide: false },
-  { src: '/images/palms-white.jpeg',    alt: 'גיזום דקלים בסביבה עירונית', wide: false },
-  { src: '/images/crane-city.png',      alt: 'ציוד כבד לגיזום עירוני',    wide: false },
-  { src: '/images/evening-palm.jpeg',   alt: 'עבודת ערב, נגישות מלאה',    wide: false },
+  { src: '/images/hero.jpeg',           alt: 'גיזום עצים מקצועי',          pos: 'center 20%' },
+  { src: '/images/worker-climbing.png', alt: 'טיפוס מקצועי לצמרת העץ',     pos: 'center 30%' },
+  { src: '/images/crane-sky.jpg',       alt: 'כריתת עצים בגובה',            pos: 'center 40%' },
+  { src: '/images/palms-white.jpeg',    alt: 'גיזום דקלים בסביבה עירונית',  pos: 'center 25%' },
+  { src: '/images/evening-palm.jpeg',   alt: 'עבודת ערב, נגישות מלאה',      pos: 'center 35%' },
+  { src: '/images/crane-city.png',      alt: 'ציוד כבד לגיזום עירוני',      pos: 'center 30%' },
 ]
 
 function PhotoCard({ photo, index, inView }) {
   return (
     <motion.div
-      className="photo-reveal rounded-xl overflow-hidden"
+      className="photo-reveal rounded-2xl overflow-hidden"
       style={{
-        gridColumn: photo.wide ? 'span 2' : 'span 1',
-        aspectRatio: photo.wide ? '16/9' : '3/4',
-        boxShadow: '0 4px 20px oklch(0.16 0.038 145 / 0.12)',
+        aspectRatio: '3/4',
+        boxShadow: '0 4px 24px oklch(0.16 0.038 145 / 0.13)',
       }}
-      initial={{ opacity: 0, y: 28 }}
+      initial={{ opacity: 0, y: 32 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ delay: index * 0.08 + 0.1, duration: 0.7, ease: EASE }}
+      transition={{ delay: index * 0.07 + 0.1, duration: 0.75, ease: EASE }}
     >
       <img src={photo.src} alt={photo.alt}
         className="w-full h-full object-cover"
         loading="lazy"
-        style={{ objectPosition: 'center 30%' }}
+        style={{ objectPosition: photo.pos }}
       />
     </motion.div>
   )
@@ -73,8 +72,7 @@ export default function Gallery() {
         </motion.div>
 
         {/* Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4"
-          style={{ gridAutoRows: 'auto' }}>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
           {photos.map((photo, i) => (
             <PhotoCard key={i} photo={photo} index={i} inView={inView} />
           ))}

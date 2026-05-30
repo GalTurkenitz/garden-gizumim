@@ -40,6 +40,7 @@ function ReviewCard({ r }) {
     <div className="shrink-0 flex flex-col gap-3 p-5 rounded-2xl"
       style={{
         width: 280,
+        direction: 'rtl',
         background: 'oklch(0.985 0.007 85)',
         border: '1px solid oklch(0.41 0.108 147 / 0.1)',
         boxShadow: '0 2px 12px oklch(0.16 0.038 145 / 0.06)',
@@ -85,11 +86,11 @@ export default function Reviews() {
               fontWeight: 900, fontSize: 'clamp(32px, 4.5vw, 52px)',
               letterSpacing: '-0.03em', color: 'var(--ink)', lineHeight: 1.06,
             }}>
-              14 ביקורות,{' '}
-              <span style={{ color: 'var(--g700)' }}>14 כוכבים</span>
+              הלקוחות{' '}
+              <span style={{ color: 'var(--g700)' }}>מדברים</span>
             </h2>
             <p style={{ fontSize: 15, color: 'var(--ink3)', maxWidth: '36ch' }}>
-              כולן 5 כוכבים. לא במקרה.
+              כולם 5 כוכבים. לא במקרה.
             </p>
           </div>
         </motion.div>
@@ -97,6 +98,7 @@ export default function Reviews() {
 
       {/* Scrolling track */}
       <motion.div className="relative overflow-hidden"
+        style={{ direction: 'ltr' }}
         initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
         transition={{ delay: 0.3 }}
       >
@@ -106,7 +108,7 @@ export default function Reviews() {
         <div className="absolute left-0 top-0 bottom-0 w-20 pointer-events-none z-10"
           style={{ background: 'linear-gradient(to right, var(--s0), transparent)' }} />
 
-        <div className="reviews-track px-6 pb-2">
+        <div className="reviews-track pb-2">
           {doubled.map((r, i) => <ReviewCard key={i} r={r} />)}
         </div>
       </motion.div>

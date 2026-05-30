@@ -61,6 +61,7 @@ body {
 .trust-track {
   display: flex; gap: 0;
   width: max-content;
+  direction: ltr;
   animation: trustScroll 28s linear infinite;
 }
 @keyframes trustScroll {
@@ -72,13 +73,15 @@ body {
 .reviews-track {
   display: flex; gap: 14px;
   width: max-content;
+  direction: ltr;
+  will-change: transform;
   animation: reviewsScroll 60s linear infinite;
 }
 @media (hover: hover) {
   .reviews-track:hover { animation-play-state: paused; }
 }
 @keyframes reviewsScroll {
-  from { transform: translateX(0); }
+  from { transform: translateX(0%); }
   to   { transform: translateX(-50%); }
 }
 
@@ -99,12 +102,46 @@ body {
 .service-row:hover { background: oklch(0.87 0.068 150 / 0.04); }
 
 /* ─── PHOTO REVEAL ───────────────────────────────────── */
-.photo-reveal {
-  overflow: hidden;
+.photo-reveal { overflow: hidden; }
+.photo-reveal img { transition: transform 0.6s var(--ease); }
+.photo-reveal:hover img { transform: scale(1.04); }
+
+/* ─── DOT GRID ───────────────────────────────────────── */
+.dot-grid {
+  background-image: radial-gradient(circle, oklch(0.41 0.108 147 / 0.13) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
-.photo-reveal img {
-  transition: transform 0.6s var(--ease);
+
+/* ─── ORB BLOBS ──────────────────────────────────────── */
+.orb { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; }
+@keyframes orbDrift1 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33%      { transform: translate(38px,-48px) scale(1.06); }
+  66%      { transform: translate(-28px,24px) scale(0.95); }
 }
-.photo-reveal:hover img {
-  transform: scale(1.04);
+@keyframes orbDrift2 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  40%      { transform: translate(-46px,28px) scale(1.05); }
+  70%      { transform: translate(22px,-38px) scale(0.96); }
+}
+.orb-1 { animation: orbDrift1 20s ease-in-out infinite; }
+.orb-2 { animation: orbDrift2 26s ease-in-out infinite; }
+
+/* ─── BOUNCE ARROW ───────────────────────────────────── */
+@keyframes arrowBounce {
+  0%, 100% { transform: translateY(0) translateX(-50%); }
+  50%       { transform: translateY(7px) translateX(-50%); }
+}
+.bounce-arrow { animation: arrowBounce 2.2s ease-in-out infinite; }
+
+/* ─── SECTION TAG ────────────────────────────────────── */
+.section-tag {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--g700);
+  padding: 5px 14px;
+  border: 1px solid oklch(0.41 0.108 147 / 0.2);
+  border-radius: 100px;
+  background: oklch(0.41 0.108 147 / 0.05);
 }
