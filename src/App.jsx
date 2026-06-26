@@ -10,6 +10,7 @@ import LeadForm from './components/LeadForm'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import FloatingWhatsApp from './components/FloatingWhatsApp'
+import AccessibilityWidget from './components/AccessibilityWidget'
 
 export default function App() {
   const [loaded, setLoaded] = useState(false)
@@ -31,6 +32,11 @@ export default function App() {
           </main>
           <Footer />
           <FloatingWhatsApp />
+          <AccessibilityWidget
+            businessName="גארדן גיזומים"
+            phone="054-955-2228"
+            email="webforyoutwo@gmail.com"
+          />
         </>
       )}
     </>
