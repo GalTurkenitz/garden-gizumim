@@ -16,6 +16,7 @@ export default function Contact() {
         <img src="/images/crane-city.png" alt=""
           className="w-full h-full object-cover"
           style={{ objectPosition: 'center 40%' }}
+          loading="lazy"
           aria-hidden="true"
         />
         <div className="absolute inset-0" style={{

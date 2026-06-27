@@ -145,8 +145,9 @@ export default function Services() {
             animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
             transition={{ delay: 0.35, duration: 0.9, ease: EASE }}
           >
-            <img src="/images/crane-sky.jpg" alt="גיזום עצים בגובה"
+            <img src="/images/crane-sky.jpg" alt="גיזום וכריתת עצים בגובה בהוד השרון"
               className="w-full h-full object-cover"
+              loading="lazy"
               style={{ objectPosition: 'center 15%' }}
             />
             <div className="absolute inset-0" style={{

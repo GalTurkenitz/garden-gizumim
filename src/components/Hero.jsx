@@ -187,9 +187,9 @@ function GhostBtn({ href, children, external }) {
 }
 
 const headlineLines = [
-  { text: 'גיזום עצים',   delay: 0.1 },
-  { text: 'בידיים',        delay: 0.22 },
-  { text: <span key="p" style={{ color: 'var(--g600)' }}>טובות</span>, delay: 0.34 },
+  { text: 'גיזום וכריתת עצים', delay: 0.1 },
+  { text: 'בהוד השרון',        delay: 0.22 },
+  { text: <span key="p" style={{ color: 'var(--g600)' }}>בידיים טובות</span>, delay: 0.34 },
 ]
 
 export default function Hero() {
@@ -225,7 +225,7 @@ export default function Hero() {
             <h1 style={{
               fontWeight: 900, letterSpacing: '-0.04em',
               lineHeight: 1.02, color: 'var(--ink)',
-              fontSize: 'clamp(36px, 9.5vw, 88px)',
+              fontSize: 'clamp(30px, 7.5vw, 76px)',
             }}>
               {headlineLines.map((line, i) => (
                 <div key={i} className="line-mask">
