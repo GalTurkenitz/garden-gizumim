@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { usePhone } from '../tracking'
 
 const EASE = [0.23, 1, 0.32, 1]
 
@@ -34,6 +35,7 @@ function PhotoCard({ photo, index, inView }) {
 }
 
 export default function Gallery() {
+  const phone = usePhone()
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
 
@@ -82,7 +84,7 @@ export default function Gallery() {
         <motion.div className="mt-10 text-center"
           initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 0.55 }}>
-          <a href="tel:0549552228"
+          <a href={phone.tel}
             className="inline-flex items-center gap-2 text-sm font-semibold"
             style={{ color: 'var(--g700)', transition: 'opacity 150ms' }}
             onMouseEnter={e => e.currentTarget.style.opacity = '0.7'}

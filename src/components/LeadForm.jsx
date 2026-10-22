@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { reportWhatsApp } from '../tracking'
 
 const EASE = [0.23, 1, 0.32, 1]
 
@@ -23,7 +24,7 @@ export default function LeadForm() {
 
   const onSubmit = e => {
     e.preventDefault()
-    if (!form.name || !form.phone) return
+    if (!form.name.trim() || !form.phone.trim()) return
 
     const lines = [
       `שם: ${form.name}`,
@@ -33,6 +34,8 @@ export default function LeadForm() {
     ].filter(Boolean).join('%0A')
 
     const msg = `פנייה חדשה מהאתר 🌿%0A${lines}`
+    // Google Ads: WhatsApp transition only (not a verified lead). Nothing from the form is sent.
+    reportWhatsApp()
     window.open(`https://wa.me/972549552228?text=${msg}`, '_blank')
     setSent(true)
   }

@@ -1,9 +1,11 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { usePhone } from '../tracking'
 
 const EASE = [0.23, 1, 0.32, 1]
 
 export default function Contact() {
+  const phone = usePhone()
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
@@ -63,7 +65,7 @@ export default function Contact() {
             </p>
 
             {/* Big phone */}
-            <a href="tel:0549552228"
+            <a href={phone.tel}
               className="block mb-4 font-black"
               style={{
                 fontSize: 'clamp(36px, 5.5vw, 58px)',
@@ -75,7 +77,7 @@ export default function Contact() {
               onMouseEnter={e => e.currentTarget.style.color = 'oklch(0.985 0.007 85)'}
               onMouseLeave={e => e.currentTarget.style.color = 'var(--g400)'}
             >
-              054-955-2228
+              {phone.display}
             </a>
 
             <p style={{ fontSize: 12, color: 'oklch(0.69 0.122 150 / 0.5)', marginBottom: 28 }}>
@@ -84,7 +86,7 @@ export default function Contact() {
 
             {/* Buttons */}
             <div className="flex flex-wrap gap-3">
-              <a href="tel:0549552228"
+              <a href={phone.tel}
                 className="flex items-center gap-2 px-6 py-3 rounded-full font-bold text-[14px]"
                 style={{
                   background: 'var(--g400)', color: 'var(--g950)',
@@ -142,8 +144,8 @@ export default function Contact() {
                     </svg>
                   ),
                   label: 'טלפון',
-                  value: '054-955-2228',
-                  href: 'tel:0549552228',
+                  value: phone.display,
+                  href: phone.tel,
                 },
                 {
                   icon: (

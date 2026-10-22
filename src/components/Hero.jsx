@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
+import { usePhone } from '../tracking'
 
 const EASE = [0.23, 1, 0.32, 1]
 
@@ -193,6 +194,7 @@ const headlineLines = [
 ]
 
 export default function Hero() {
+  const phone = usePhone()
   return (
     <section id="hero" className="relative min-h-[100dvh] flex items-center overflow-hidden">
       <div className="absolute inset-0" style={{ background: 'var(--s0)' }} />
@@ -250,12 +252,12 @@ export default function Hero() {
             <motion.div className="flex flex-wrap gap-3 mt-9"
               initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.66, duration: 0.6, ease: EASE }}>
-              <GreenBtn href="tel:0549552228">
+              <GreenBtn href={phone.tel}>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
                   <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.12 7.82a19.79 19.79 0 01-3.07-8.67A2 2 0 011.9 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
                 </svg>
-                054-955-2228
+                {phone.display}
               </GreenBtn>
               <GhostBtn href="https://wa.me/972549552228?text=שלום%2C%20אשמח%20לשמוע%20על%20שירותי%20גיזום%20עצים" external>
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="#25D366">

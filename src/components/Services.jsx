@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
+import { usePhone } from '../tracking'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -78,6 +79,7 @@ function ServiceRow({ s, index }) {
 }
 
 export default function Services() {
+  const phone = usePhone()
   const headerRef = useRef(null)
   const listRef   = useRef(null)
   const inView    = useInView(headerRef, { once: true, margin: '-80px' })
@@ -165,7 +167,7 @@ export default function Services() {
         <motion.div className="mt-16 flex flex-wrap items-center gap-4"
           initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 0.6 }}>
-          <a href="tel:0549552228"
+          <a href={phone.tel}
             className="flex items-center gap-2 px-8 py-3.5 rounded-full font-bold text-[14px]"
             style={{
               background: 'var(--g400)', color: 'var(--g950)',

@@ -3,6 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Consent Mode v2 defaults: must run before the Google tag. Denied until the visitor chooses (see ConsentBanner.jsx). -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      (function () {
+        var c = null;
+        try { c = localStorage.getItem('gg-consent'); } catch (e) {}
+        var v = c === 'granted' ? 'granted' : 'denied';
+        gtag('consent', 'default', {
+          ad_storage: v, ad_user_data: v, ad_personalization: v, analytics_storage: v,
+          wait_for_update: 500
+        });
+      })();
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-779313511"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-779313511');
+    </script>
+    <!-- Event snippet for מעבר לוואטסאפ מהאתר - לא ליד מאומת - גארדן גיזום conversion page
+    Called only from src/tracking.js (WhatsApp link click / valid lead form). Never on page load. -->
+    <script>
+    function gtag_report_conversion(url) {
+      var callback = function () {
+        if (typeof(url) != 'undefined') {
+          window.location = url;
+        }
+      };
+      gtag('event', 'conversion', {
+          'send_to': 'AW-779313511/QwanCKPg_Z4dEOfCzfMC',
+          'event_callback': callback
+      });
+      return false;
+    }
+    </script>
     <title>גיזום וכריתת עצים בהוד השרון | גארדן גיזומים</title>
     <meta name="description" content="גיזום עצים וכריתת עצים מקצועי בהוד השרון והשרון — רעננה וכפר סבא. פינוי גזם, חיתוך ענפים, כרסום גדמים. מהיר, אמין ובמחיר הוגן. חייגו 054-9552228." />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />

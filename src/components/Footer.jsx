@@ -1,3 +1,5 @@
+import { openConsentSettings } from './ConsentBanner'
+
 export default function Footer() {
   const year = new Date().getFullYear()
   return (
@@ -36,6 +38,11 @@ export default function Footer() {
 
           <p style={{ fontSize: 11, color: 'oklch(0.52 0.058 145 / 0.7)' }}>
             גארדן גיזומים © {year}
+            {' · '}
+            <button type="button" onClick={openConsentSettings}
+              style={{ color: 'inherit', textDecoration: 'underline' }}>
+              הגדרות עוגיות
+            </button>
           </p>
         </div>
       </div>

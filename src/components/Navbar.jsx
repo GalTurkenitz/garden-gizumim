@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { usePhone } from '../tracking'
 
 const EASE = [0.23, 1, 0.32, 1]
 const links = [
@@ -20,6 +21,7 @@ function LeafIcon({ size = 16 }) {
 }
 
 export default function Navbar() {
+  const phone = usePhone()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -81,13 +83,13 @@ export default function Navbar() {
           <div className="hidden md:block w-px h-4 mx-0.5"
             style={{ background: 'oklch(0.41 0.108 147 / 0.22)' }} />
 
-          <motion.a href="tel:0549552228"
+          <motion.a href={phone.tel}
             className="hidden md:flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] font-bold"
             style={{ background: 'var(--g800)', color: 'var(--g50)', boxShadow: '0 2px 8px oklch(0.23 0.072 145 / 0.35)' }}
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.65 }}
             whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
           >
-            054-955-2228
+            {phone.display}
           </motion.a>
 
           <button className="md:hidden flex flex-col gap-[4px] p-2"
@@ -131,14 +133,14 @@ export default function Navbar() {
                 {link.label}
               </motion.a>
             ))}
-            <motion.a href="tel:0549552228"
+            <motion.a href={phone.tel}
               onClick={() => setMenuOpen(false)}
               className="mt-4 w-full text-center py-4 rounded-2xl font-bold text-base"
               style={{ background: 'var(--g800)', color: 'var(--g50)' }}
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.32, ease: EASE }}
             >
-              054-955-2228
+              {phone.display}
             </motion.a>
           </motion.div>
         )}
